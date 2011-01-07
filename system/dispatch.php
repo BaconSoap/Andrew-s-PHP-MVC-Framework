@@ -27,6 +27,12 @@ class Dispatcher
         $this->uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         //Filter the junk out of the URI
         $pos = array_search('index.php', $this->uri);
+        $new_uri = null;
+        for($i = $pos+1; $i < count($this->uri); $i++)
+        {
+            $new_uri[$i-$pos-1] = $this->uri[$i];
+        }
+        $this->uri = $new_uri;
         //Grabs the controller, function, and any paramaters.
         $this->controller = $this->_get_controller();
         $this->function = $this->_get_function();
@@ -41,13 +47,13 @@ class Dispatcher
     {
         if(!is_null($this->params))
         {
-            
+            $this->loader->load_controller($this->controller, $this->function, $this->params);
         } else if (!is_null($this->function))
         {
-            
+            $this->loader->load_controller($this->controller, $this->function);
         } else if (!is_null($this->controller))
         {
-            
+            $this->loader->load_controller($this->controller);
         } else
         {
             $this->loader->load_controller(Dispatcher::$default_controller, Dispatcher::$default_function, Dispatcher::$default_params);
@@ -61,7 +67,10 @@ class Dispatcher
      */
     private function _get_controller()
     {
-        //$this->uri
+        if (isset($this->uri[0]))
+        {
+            return $this->uri[0];
+        }
         return null;
     }
     
@@ -72,6 +81,10 @@ class Dispatcher
      */
     private function _get_function()
     {
+        if (isset($this->uri[1]))
+        {
+            return $this->uri[1];
+        }
         return null;
     }
     
@@ -82,6 +95,15 @@ class Dispatcher
      */
     private function _get_params()
     {
+        if (isset($this->uri[2]))
+        {
+            $params = array();
+            for($i = 2; $i < count($this->uri); $i++)
+            {
+                $params[$i-2] = $this->uri[$i];
+            }
+            return $params;
+        }
         return null;
     }
 }
