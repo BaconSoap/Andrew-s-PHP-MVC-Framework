@@ -1,6 +1,6 @@
 <?php
-require_once 'autoload.php';
-require_once 'dispatch.php';
+require_once 'autoloader.php';
+require_once 'dispatcher.php';
 require_once 'loader.php';
 
 /**

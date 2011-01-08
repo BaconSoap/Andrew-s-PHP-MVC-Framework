@@ -3,6 +3,8 @@
  * Dispatcher
  * This does the heavy lifting of mapping URI's to controllers, and then loading them.
  * @author Andrew Varnerin
+ * @todo Make a filter list to protect against attacks. Filter non-user-defined routes.
+ * @todo Make a routes.php file and make the routing not-automagic by default.
  */
 
 class Dispatcher
