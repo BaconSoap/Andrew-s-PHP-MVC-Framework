@@ -5,3 +5,4 @@ $config['automagic_routes'] = false;
 $config['default_controller'] = "welcome";
 $config['default_function'] = "index";
 $config['default_params'] = null;
+$config['base_path'] = 'http://localhost/sblog/index.php/';

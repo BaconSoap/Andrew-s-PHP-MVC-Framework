@@ -15,15 +15,19 @@ class Dispatcher
     private $function;
     private $params;
     public $load;
-
-
+    
+    private $routes;
+    private $routes_helpers;
+    public static $stat_dispatcher;
     /**
      * Dispatcher::__construct()
      * 
      * @return
      */
-    public function __construct()
+    public function __construct($config)
     {
+        $this->config = $config;
+        $this->load =& Dispatcher::$stat_dispatcher;
         //Split the URI into segments.
         $this->uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         //Filter the junk out of the URI
@@ -34,9 +38,14 @@ class Dispatcher
         }
         $this->uri = $new_uri;
         //Grabs the controller, function, and any paramaters.
-        $this->controller = $this->_get_controller();
-        $this->function = $this->_get_function();
-        $this->params = $this->_get_params();
+        if ($this->config['automagic_routes'])
+        {
+            $this->controller = $this->_get_controller();
+            $this->function = $this->_get_function();
+            $this->params = $this->_get_params();
+        }
+        $this->_load_routes();
+        $this->load->uri_helpers = $this->routes_helpers;
     }
 
     /**
@@ -45,18 +54,35 @@ class Dispatcher
      */
     public function dispatch()
     {
-        if (!is_null($this->params))
+        if(count($this->uri) > 0)
         {
-            $this->load->controller($this->controller, $this->function, $this->params);
-        } else if (!is_null($this->function))
-        {
-            $this->load->controller($this->controller, $this->function);
-        } else if (!is_null($this->controller))
-        {
-            $this->load->controller($this->controller);
+            $joined_uri = join("/", $this->uri);
         } else
         {
-            $this->load->controller($this->config['default_controller'], $this->config['default_function'], $this->config['default_params']);
+            $joined_uri = $this->config['default_controller'].'/'.$this->config['default_function'];
+        }
+        //Automagic routing. Dangerous...
+        if ($this->config['automagic_routes'] === true)
+        {
+            if (!is_null($this->params))
+            {
+                $this->load->controller($this->controller, $this->function, $this->params);
+            } else if (!is_null($this->function))
+            {
+                $this->load->controller($this->controller, $this->function);
+            } else if (!is_null($this->controller))
+            {
+                $this->load->controller($this->controller);
+            } else
+            {
+                $this->load->controller($this->config['default_controller'], $this->config['default_function'], $this->config['default_params']);
+            }
+        } else if (isset($this->routes[$joined_uri]))
+        {
+            $this->load->controller($this->routes[$joined_uri]['controller'],$this->routes[$joined_uri]['function']);
+        } else
+        {
+            require('404.html');
         }
     }
 
@@ -102,5 +128,36 @@ class Dispatcher
             return $params;
         }
         return null;
+    }
+    
+    
+    /**
+     * Dispatcher::_load_routes()
+     * Loads the routes into the array.
+     * @return void
+     */
+    private function _load_routes()
+    {
+        include "app/routes.php";
+    }
+    
+    /**
+     * Dispatcher::route()
+     * 
+     * @param mixed $uri        The full URI to match against. Ex: "posts/view/:id"
+     * @param mixed $controller The controller to route to
+     * @param mixed $function   The function to route to
+     * @param mixed $params An array of the parameters to pass, of the form
+     *                      "array('param'=>'value')". You may use colon values from
+     *                      the matched URI. Ex: "array('param'=>':id')"
+     * @return void
+     */
+    private function route($uri, $controller, $function = null, $params = null)
+    {
+        $this->routes[$uri]['controller']  = $controller;
+        $this->routes[$uri]['function']  = $function;
+        $this->routes[$uri]['params']  = $params;
+        
+        $this->routes_helpers[$controller.'_'.$function.'_path'] = $this->config['base_path'].$controller.'/'.$function;
     }
 }

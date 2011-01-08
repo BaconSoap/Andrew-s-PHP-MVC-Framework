@@ -8,11 +8,13 @@
  */
 class Loader
 {
+    public $uri_helpers;
     /**
      * Loads a controller and calls its function
      */
     function controller($controller, $function = "index", $params = null)
     {
+
         for($i = count($params); $i < 8; $i++)
         {
             $params[$i] = null;
@@ -31,5 +33,25 @@ class Loader
         $loaded->$function($params[0],$params[1],$params[2],$params[3],$params[4],$params[5],$params[6],$params[7]);
             
         $loaded->render($controller, $function);
+    }
+    
+    function helper($helper)
+    {
+        $base_helpers = array('uri');
+        //First determine if the helper is one of the base helpers
+        if(array_search($helper, $base_helpers) >= 0)
+        {
+            
+            $helper = ucfirst($helper."_helper");
+            $helped = new $helper();
+            $helped->load =& $this;
+            
+            if($helper == 'Uri_helper')
+            {
+                $helped->uri_helpers = $this->uri_helpers;
+            }
+            return $helped;
+        }
+        
     }
 }

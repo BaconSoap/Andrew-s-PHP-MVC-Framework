@@ -9,5 +9,9 @@ function __autoload($class_name)
     } else if (substr_count($class_name, '_controller'))
     {
         require_once 'app/controllers/'.strtolower($class_name).'.php';
+    //Then check to see if it is a base helper
+    } else if (file_exists('system/helpers/'.strtolower($class_name).'.php'))
+    {
+        require_once 'system/helpers/'.strtolower($class_name).'.php';
     }
 }
