@@ -4,15 +4,14 @@ require_once 'dispatcher.php';
 require_once 'loader.php';
 include 'configuration.php';
 
+//Load the loader & user configuration send them down the chain.
 $load = new Loader();
 $load->config = $config;
-Dispatcher::$stat_dispatcher =& $load;
+Dispatcher::$stat_loader =& $load;
+
 //Start the buffers!
 ob_start();
-
-$dispatcher = new Dispatcher($config);
-
-
+$dispatcher = new Dispatcher();
 $dispatcher->dispatch();
 
 //The action is over. Flush the buffer and go home.

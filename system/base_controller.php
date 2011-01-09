@@ -11,7 +11,6 @@ class Controller
     {
     }
     
-
     /**
      * Controller::render()
      * Render the view belonging to an action.
@@ -50,7 +49,18 @@ class Controller
         require 'app/views/'.$class_name.'/_'.$partial_name.'.php';
     }
     
+    /**
+     * Loads the URI helper.
+     */
+    private function _load_uri_helper()
+    {
+        if (!isset($this->uri_helper))
+        {
+            $this->uri_helper = $this->load->helper('uri');
+        }
+    }
     
+    //TODO: Everything below this should be taken care of through magic methods.
     /**
      * Controller::link_to()
      * Creates a link to another controller & action.
@@ -71,16 +81,5 @@ class Controller
     {
         $this->_load_uri_helper();
         $this->uri_helper->style_link($sheet);
-    }
-    
-    /**
-     * Loads the URI helper.
-     */
-    private function _load_uri_helper()
-    {
-        if (!isset($this->uri_helper))
-        {
-            $this->uri_helper = $this->load->helper('uri');
-        }
     }
 }

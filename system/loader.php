@@ -15,12 +15,13 @@ class Loader
      */
     function controller($controller, $function = "index", $params = null)
     {
-        
+        //Pads the params array with null's until it reaches 8.
         for($i = count($params); $i < 8; $i++)
         {
             $params[$i] = null;
         }
         
+        //Routes to index by default
         if (is_null($function))
         {
             $function = 'index';
@@ -32,17 +33,18 @@ class Loader
         $loaded = new $controller();
         $loaded->load =& $this;
         $loaded->$function($params[0],$params[1],$params[2],$params[3],$params[4],$params[5],$params[6],$params[7]);
-            
+        
         $loaded->render($controller, $function);
     }
     
     /**
-     * 
+     * Loads a helper.
      */
     function helper($helper)
     {
         $base_helpers = array('uri');
         //First determine if the helper is one of the base helpers
+        //TODO: Automagic getting/setting. __get() and __set().
         if(array_search($helper, $base_helpers) >= 0)
         {
             
@@ -56,6 +58,6 @@ class Loader
             }
             $helped->config = $this->config;
             return $helped;
-        }    
+        }
     }
 }

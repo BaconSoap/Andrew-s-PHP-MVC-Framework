@@ -1,5 +1,16 @@
 <?php
-class Uri_helper
+
+/**
+ * Uri_helper
+ * This is a core helper. Its purpose is to provide easy functions for dealing
+ *   with URI's while in a view.
+ * @package MVC
+ * @author Andrew
+ * @copyright 2011
+ * @version $Id$
+ * @access public
+ */
+class Uri_helper extends Helper
 {
     public $uri_helpers;
     public $config;

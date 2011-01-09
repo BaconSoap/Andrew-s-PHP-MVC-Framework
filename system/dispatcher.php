@@ -18,17 +18,17 @@ class Dispatcher
     
     private $routes;
     private $routes_helpers;
-    public static $stat_dispatcher;
+    public static $stat_loader;
     
     /**
      * Dispatcher::__construct()
      * 
      * @return
      */
-    public function __construct($config)
+    public function __construct()
     {
-        $this->config = $config;
-        $this->load =& Dispatcher::$stat_dispatcher;
+        $this->load =& Dispatcher::$stat_loader;
+        $this->config = $this->load->config;
         //Split the URI into segments.
         $this->uri = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
         //Filter the junk out of the URI
@@ -45,6 +45,7 @@ class Dispatcher
             $this->function = $this->_get_function();
             $this->params = $this->_get_params();
         }
+        //Load the routes and routes helpers.
         $this->_load_routes();
         $this->load->uri_helpers = $this->routes_helpers;
     }
@@ -55,9 +56,11 @@ class Dispatcher
      */
     public function dispatch()
     {
+        //If we are dealing with with a real URI, join it together again.
         if(count($this->uri) > 0)
         {
             $joined_uri = join("/", $this->uri);
+        //Check to see if we are dealing with nothing. Reroute to defaults now.
         } else
         {
             $joined_uri = $this->config['default_controller'].'/'.$this->config['default_function'];
@@ -82,7 +85,7 @@ class Dispatcher
         } else if (isset($this->routes[$joined_uri]))
         {
             $this->load->controller($this->routes[$joined_uri]['controller'],$this->routes[$joined_uri]['function']);
-        //At this point, we have nothing. 404 it up.
+        //At this point, we have nothing. 404 page to the rescue!.
         } else
         {
             require('404.html');
@@ -146,7 +149,7 @@ class Dispatcher
     
     /**
      * Dispatcher::route()
-     * 
+     * This function is used in the user's routes.php file to add routes.
      * @param mixed $uri        The full URI to match against. Ex: "posts/view/:id"
      * @param mixed $controller The controller to route to
      * @param mixed $function   The function to route to
