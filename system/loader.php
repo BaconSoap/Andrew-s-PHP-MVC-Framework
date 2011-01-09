@@ -9,12 +9,13 @@
 class Loader
 {
     public $uri_helpers;
+    public $config;
     /**
      * Loads a controller and calls its function
      */
     function controller($controller, $function = "index", $params = null)
     {
-
+        
         for($i = count($params); $i < 8; $i++)
         {
             $params[$i] = null;
@@ -27,7 +28,7 @@ class Loader
         
         $controller = ucfirst($controller);
         $controller .= '_controller';
-            
+
         $loaded = new $controller();
         $loaded->load =& $this;
         $loaded->$function($params[0],$params[1],$params[2],$params[3],$params[4],$params[5],$params[6],$params[7]);
@@ -35,6 +36,9 @@ class Loader
         $loaded->render($controller, $function);
     }
     
+    /**
+     * 
+     */
     function helper($helper)
     {
         $base_helpers = array('uri');
@@ -50,8 +54,8 @@ class Loader
             {
                 $helped->uri_helpers = $this->uri_helpers;
             }
+            $helped->config = $this->config;
             return $helped;
-        }
-        
+        }    
     }
 }

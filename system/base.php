@@ -5,12 +5,13 @@ require_once 'loader.php';
 include 'configuration.php';
 
 $load = new Loader();
+$load->config = $config;
 Dispatcher::$stat_dispatcher =& $load;
 //Start the buffers!
 ob_start();
 
 $dispatcher = new Dispatcher($config);
-$dispatcher->config = $config;
+
 
 $dispatcher->dispatch();
 

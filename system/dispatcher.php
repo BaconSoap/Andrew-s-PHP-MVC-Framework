@@ -3,22 +3,23 @@
  * Dispatcher
  * This does the heavy lifting of mapping URI's to controllers, and then loading them.
  * @author Andrew Varnerin
- * @todo Make a filter list to protect against attacks. Filter non-user-defined routes.
- * @todo Make a routes.php file and make the routing not-automagic by default.
  */
 
 class Dispatcher
 {
     public $config;
+    
     private $uri; //The URI represented as an exploded array;
     private $controller;
     private $function;
     private $params;
+    
     public $load;
     
     private $routes;
     private $routes_helpers;
     public static $stat_dispatcher;
+    
     /**
      * Dispatcher::__construct()
      * 
@@ -77,9 +78,11 @@ class Dispatcher
             {
                 $this->load->controller($this->config['default_controller'], $this->config['default_function'], $this->config['default_params']);
             }
+        //Safe routing, using only defined routes.
         } else if (isset($this->routes[$joined_uri]))
         {
             $this->load->controller($this->routes[$joined_uri]['controller'],$this->routes[$joined_uri]['function']);
+        //At this point, we have nothing. 404 it up.
         } else
         {
             require('404.html');

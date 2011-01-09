@@ -6,3 +6,4 @@ $config['default_controller'] = "welcome";
 $config['default_function'] = "index";
 $config['default_params'] = null;
 $config['base_path'] = 'http://localhost/sblog/index.php/';
+$config['style_path'] = 'http://localhost/sblog/app/stylesheets/';
