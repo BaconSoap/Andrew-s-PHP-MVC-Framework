@@ -44,7 +44,6 @@ class Loader
     {
         $base_helpers = array('uri');
         //First determine if the helper is one of the base helpers
-        //TODO: Automagic getting/setting. __get() and __set().
         if(array_search($helper, $base_helpers) >= 0)
         {
             

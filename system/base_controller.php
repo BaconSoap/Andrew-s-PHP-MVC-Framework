@@ -39,7 +39,6 @@ class Controller
     /**
      * Controller::render_partial()
      * Renders a partial.
-     //TODO: add collection support
      * @param mixed $partial_name
      * @return void
      */
@@ -60,7 +59,7 @@ class Controller
         }
     }
     
-    //TODO: Everything below this should be taken care of through magic methods.
+    
     /**
      * Controller::link_to()
      * Creates a link to another controller & action.
