@@ -1,4 +1,6 @@
 <?php
+if (!isset($_BASEPATH))
+{ echo "No direct access"; exit; }
 function __autoload($class_name)
 {
     $class_name = strtolower($class_name);

@@ -6,8 +6,9 @@ class Welcome_Controller extends Controller
     public $uri_helper;
     function index()
     {
-        $this->uri_helper = $this->load->helper('uri');
+        $this->h = $this->load->helper('uri');
         $this->data = "Hello!";
+        echo $this->h->link_to('a', 'welcome_index_path');
     }
     
     function view($id)

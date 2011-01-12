@@ -24,6 +24,7 @@ class Uri_helper extends Helper
         } else
         {
             echo "<br/>ERROR: Route not found: <b>$place</b>";
+            print_r($this->uri_helpers[$place]);
         }
     }
     

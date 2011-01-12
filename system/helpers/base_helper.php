@@ -1,4 +1,6 @@
 <?php
+//if (!isset($_BASEPATH))
+//{ echo "No direct access"; exit; }
 
 /**
  * Helper

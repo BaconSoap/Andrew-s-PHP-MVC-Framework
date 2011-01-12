@@ -1,7 +1,19 @@
 <?php
+
+
+/**
+ * Controller
+ * This is the class that every controller MUST extend to work.
+ * @package MVC
+ * @author Andrew
+ * @copyright 2011
+ * @version $Id$
+ * @access public
+ */
 class Controller
 {
 
+    public $loaded_components;
     public $load;
     public $uri_helper;
     private $temp_controller_name;
@@ -9,6 +21,7 @@ class Controller
     
     public function __construct()
     {
+        $this->loaded_components = array();
     }
     
     /**
@@ -53,9 +66,9 @@ class Controller
      */
     private function _load_uri_helper()
     {
-        if (!isset($this->uri_helper))
+        if (!isset($this->h))
         {
-            $this->uri_helper = $this->load->helper('uri');
+            $this->h = $this->load->helper('uri');
         }
     }
     
@@ -70,7 +83,7 @@ class Controller
     function link_to($text, $place)
     {
         $this->_load_uri_helper();
-        $this->uri_helper->link_to($text, $place);
+        $this->h->link_to($text, $place);
     }
     
     /**
@@ -79,6 +92,24 @@ class Controller
     function style_link($sheet)
     {
         $this->_load_uri_helper();
-        $this->uri_helper->style_link($sheet);
+        $this->h->style_link($sheet);
+    }
+    
+    function __set($name, $value)
+    {
+        $this->loaded_components[$name] =& $value;
+    }
+    
+    function __get($name)
+    {
+        if (isset($this->loaded_components[$name]))
+        {
+            return $this->loaded_components[$name];
+        } else
+        {
+            print_r($this->loaded_components);
+            echo $name;
+            throw new EXCEPTION('No such component');
+        }
     }
 }

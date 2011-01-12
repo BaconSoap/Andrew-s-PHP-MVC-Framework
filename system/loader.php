@@ -37,6 +37,7 @@ class Loader
         $loaded->render($controller, $function);
     }
     
+    
     /**
      * Loads a helper.
      */
@@ -56,6 +57,7 @@ class Loader
                 $helped->uri_helpers = $this->uri_helpers;
             }
             $helped->config = $this->config;
+            
             return $helped;
         }
     }
