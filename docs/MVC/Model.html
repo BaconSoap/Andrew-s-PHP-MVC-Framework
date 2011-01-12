@@ -43,6 +43,8 @@
 		</a><br>
 			<a href="../MVC/_loader.php.html">		loader.php
 		</a><br>
+			<a href="../MVC/_query.php.html">		query.php
+		</a><br>
 			<a href="../MVC/_helpers---uri_helper.php.html">		uri_helper.php
 		</a><br>
 	  </div><br />
@@ -56,6 +58,7 @@
 	    		<a href="../MVC/Helper.html">Helper</a><br />
 	    		<a href="../MVC/Loader.html">Loader</a><br />
 	    		<a href="../MVC/Model.html">Model</a><br />
+	    		<a href="../MVC/Query.html">Query</a><br />
 	    		<a href="../MVC/Uri_helper.html">Uri_helper</a><br />
 	  </div>
                 </td>
@@ -100,6 +103,7 @@ Source Location: /base_model.php<br /><br />
 <ul>
     <li><a href="../MVC/Model.html#var$link">$link</a></li>
     <li><a href="../MVC/Model.html#var$load">$load</a></li>
+    <li><a href="../MVC/Model.html#var$query">$query</a></li>
     <li><a href="../MVC/Model.html#var$stat_load">$stat_load</a></li>
   </ul>
 </td>
@@ -109,7 +113,7 @@ Source Location: /base_model.php<br /><br />
 <h3><a href="#class_methods">Methods</a></h3>
 <ul>
     <li><a href="../MVC/Model.html#method__construct">__construct</a></li>
-    <li><a href="../MVC/Model.html#methodgoodbye">goodbye</a></li>
+    <li><a href="../MVC/Model.html#methodselect">select</a></li>
   </ul>
 </td>
 
@@ -129,7 +133,7 @@ Source Location: /base_model.php<br /><br />
 <a name="class_details"></a>
 <h3>Class Details</h3>
 <div class="tags">
-[line 14]<br />
+[line 15]<br />
 Model  This is the base model that every model MUST extend, in order to gain    database functionality.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -158,7 +162,7 @@ Model  This is the base model that every model MUST extend, in order to gain    
 	<a name="var$stat_load"></a>
 	<p></p>
 	<h4>static $stat_load = <span class="value"></span></h4>
-	<p>[line 18]</p>
+	<p>[line 19]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -182,7 +186,7 @@ Model  This is the base model that every model MUST extend, in order to gain    
 	<a name="var$link"></a>
 	<p></p>
 	<h4>$link = <span class="value"></span></h4>
-	<p>[line 17]</p>
+	<p>[line 18]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -206,7 +210,31 @@ Model  This is the base model that every model MUST extend, in order to gain    
 	<a name="var$load"></a>
 	<p></p>
 	<h4>$load = <span class="value"></span></h4>
-	<p>[line 16]</p>
+	<p>[line 17]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$query"></a>
+	<p></p>
+	<h4>$query = <span class="value"></span></h4>
+	<p>[line 21]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -236,7 +264,7 @@ Model  This is the base model that every model MUST extend, in order to gain    
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 26]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 28]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -260,20 +288,24 @@ Model  This is the base model that every model MUST extend, in order to gain    
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
-	<a name="methodgoodbye"></a>
-	<h3>method goodbye <span class="smalllinenumber">[line 53]</span></h3>
+	<a name="methodselect"></a>
+	<h3>method select <span class="smalllinenumber">[line 55]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
-		<code>void goodbye(
-)</code>
+		<code><a href="../MVC/Query.html">Query</a> select(
+$what
+$what)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Model::goodbye()  A test method.<br /><br /><br /><br />
+		Model::select()  Begins a query. Populates the query's FROM portion automagically.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>The query being constructed. This allows method chaining.</td>
+  </tr>
   <tr>
     <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
   </tr>
@@ -282,6 +314,16 @@ Model  This is the base model that every model MUST extend, in order to gain    
 <br /><br />
 
 	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">$what&nbsp;&nbsp;</td>
+        <td><b>$what</b>&nbsp;&nbsp;</td>
+        <td>What to select.</td>
+      </tr>
+        </table>
+    </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
 </div><br />
@@ -289,7 +331,7 @@ Model  This is the base model that every model MUST extend, in order to gain    
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Tue, 11 Jan 2011 22:26:45 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Wed, 12 Jan 2011 14:17:54 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

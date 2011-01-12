@@ -20,6 +20,6 @@ class Welcome_Controller extends Controller
     {
         $this->posts = $this->load->model('posts');
         $this->posts->hello();
-        $this->posts->goodbye();
+        echo $this->posts->select('count(*)')->now();
     }
 }

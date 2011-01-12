@@ -1,5 +1,6 @@
 <?php
 require 'database.php';
+require 'query.php';
 
 /**
  * Model
@@ -17,6 +18,7 @@ class Model
     protected $link;
     public static $stat_load;
     private $table_name;
+    public $query;
     
     /**
      * Model::__construct()
@@ -44,14 +46,15 @@ class Model
     }
     
     
-    
     /**
-     * Model::goodbye()
-     * A test method.
-     * @return void
+     * Model::select()
+     * Begins a query. Populates the query's FROM portion automagically.
+     * @param $what What to select.
+     * @return Query The query being constructed. This allows method chaining.
      */
-    public function goodbye()
+    public function select($what)
     {
-        echo "there are ".$this->count().' '.$this->table_name;
+        $this->query = new Query($this->load->config['db'], $this->link);
+        return $this->query->select($what)->from($this->table_name);
     }
 }
