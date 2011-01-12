@@ -1,10 +1,15 @@
 <?php
+
 /**
  * Dispatcher
- * This does the heavy lifting of mapping URI's to controllers, and then loading them.
- * @author Andrew Varnerin
+ * This does the heavy lifting of mapping URI's to controllers, and then
+ *   loading them.
+ * @package MVC
+ * @author Andrew
+ * @copyright 2011
+ * @version $Id$
+ * @access public
  */
-
 class Dispatcher
 {
     public $config;

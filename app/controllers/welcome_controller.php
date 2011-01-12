@@ -15,4 +15,11 @@ class Welcome_Controller extends Controller
     {
         $this->id = $id;
     }
+    
+    function model_test()
+    {
+        $this->posts = $this->load->model('posts');
+        $this->posts->hello();
+        $this->posts->goodbye();
+    }
 }

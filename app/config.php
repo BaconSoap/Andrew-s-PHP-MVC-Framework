@@ -12,3 +12,10 @@ $config['default_params'] = null;
 $config['base_path'] = 'http://localhost/MVC/index.php/';
 //The path to your stylesheets folder. Also needs a trailing slash.
 $config['style_path'] = 'http://localhost/MVC/app/stylesheets/';
+
+//Database configuration
+$config['db']['driver'] = 'mysql';
+$config['db']['server'] = 'localhost';
+$config['db']['database'] = 'test';
+$config['db']['username'] = 'test';
+$config['db']['password'] = 'test';

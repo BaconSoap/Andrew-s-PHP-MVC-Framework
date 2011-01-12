@@ -5,7 +5,7 @@
  * Controller
  * This is the class that every controller MUST extend to work.
  * @package MVC
- * @author Andrew
+ * @author Andrew Varnerin
  * @copyright 2011
  * @version $Id$
  * @access public
