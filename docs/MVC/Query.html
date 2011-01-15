@@ -31,11 +31,17 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../MVC/_autoloader.php.html">		autoloader.php
+		</a><br>
+			<a href="../MVC/_base.php.html">		base.php
+		</a><br>
 			<a href="../MVC/_base_controller.php.html">		base_controller.php
 		</a><br>
 			<a href="../MVC/_helpers---base_helper.php.html">		base_helper.php
 		</a><br>
 			<a href="../MVC/_base_model.php.html">		base_model.php
+		</a><br>
+			<a href="../MVC/_configuration.php.html">		configuration.php
 		</a><br>
 			<a href="../MVC/_database.php.html">		database.php
 		</a><br>
@@ -101,7 +107,9 @@ Source Location: /query.php<br /><br />
 <td valign="top">
 <h3><a href="#class_vars">Variables</a></h3>
 <ul>
+    <li><a href="../MVC/Query.html#var$config">$config</a></li>
     <li><a href="../MVC/Query.html#var$from">$from</a></li>
+    <li><a href="../MVC/Query.html#var$options">$options</a></li>
     <li><a href="../MVC/Query.html#var$select">$select</a></li>
     <li><a href="../MVC/Query.html#var$where">$where</a></li>
   </ul>
@@ -113,6 +121,7 @@ Source Location: /query.php<br /><br />
 <ul>
     <li><a href="../MVC/Query.html#method__construct">__construct</a></li>
     <li><a href="../MVC/Query.html#methodfrom">from</a></li>
+    <li><a href="../MVC/Query.html#methodinsert">insert</a></li>
     <li><a href="../MVC/Query.html#methodnow">now</a></li>
     <li><a href="../MVC/Query.html#methodselect">select</a></li>
     <li><a href="../MVC/Query.html#methodwhere">where</a></li>
@@ -161,10 +170,58 @@ Query<br /><br /><p>This class represents a single query to the database. Throug
 <a name="class_vars"></a>
 <h3>Class Variables</h3>
 <div class="tags">
+	<a name="var$config"></a>
+	<p></p>
+	<h4>$config = <span class="value"></span></h4>
+	<p>[line 21]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="var$from"></a>
 	<p></p>
 	<h4>$from = <span class="value"></span></h4>
 	<p>[line 19]</p>
+  <br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>mixed</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$options"></a>
+	<p></p>
+	<h4>$options = <span class="value"></span></h4>
+	<p>[line 22]</p>
   <br /><br />
 <h4>Tags:</h4>
 <div class="tags">
@@ -242,7 +299,7 @@ Query<br /><br /><p>This class represents a single query to the database. Throug
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 32]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 34]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -284,7 +341,7 @@ $link)</code>
   </div>
   <hr />
 	<a name="methodfrom"></a>
-	<h3>method from <span class="smalllinenumber">[line 56]</span></h3>
+	<h3>method from <span class="smalllinenumber">[line 58]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -322,13 +379,65 @@ $table)</code>
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodinsert"></a>
+	<h3>method insert <span class="smalllinenumber">[line 158]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>True insert(
+mixed
+$table, 
+$data, mixed
+$values)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Query::insert()  Inserts an associative array into the table.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>if the insert was successful; false otherwise.</td>
+  </tr>
+  <tr>
+    <td><b>example:</b>&nbsp;&nbsp;</td><td>example not found</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$table</b>&nbsp;&nbsp;</td>
+        <td>The table to insert into</td>
+      </tr>
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$values</b>&nbsp;&nbsp;</td>
+        <td>The associative array of values</td>
+      </tr>
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$data</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodnow"></a>
-	<h3>method now <span class="smalllinenumber">[line 79]</span></h3>
+	<h3>method now <span class="smalllinenumber">[line 81]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>An now(
-)</code>
+[
+$show_query = false])</code>
     </td></tr></table>
     </td></tr></table><br />
 	
@@ -347,11 +456,21 @@ $table)</code>
 <br /><br />
 
 	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">&nbsp;&nbsp;</td>
+        <td><b>$show_query</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
 	<a name="methodselect"></a>
-	<h3>method select <span class="smalllinenumber">[line 44]</span></h3>
+	<h3>method select <span class="smalllinenumber">[line 46]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -390,7 +509,7 @@ $what)</code>
   </div>
   <hr />
 	<a name="methodwhere"></a>
-	<h3>method where <span class="smalllinenumber">[line 68]</span></h3>
+	<h3>method where <span class="smalllinenumber">[line 70]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -432,7 +551,7 @@ $parameters)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 12 Jan 2011 14:17:56 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sat, 15 Jan 2011 12:10:40 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

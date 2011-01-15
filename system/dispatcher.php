@@ -27,7 +27,8 @@ class Dispatcher
     
     /**
      * Dispatcher::__construct()
-     * 
+     * Constructs a Dispatcher and loads all of the components necessary for an
+     *   application to run.
      * @return
      */
     public function __construct()
@@ -57,7 +58,7 @@ class Dispatcher
 
     /**
      * Dispatcher::dispatch()
-     * Loads the controller
+     * Loads a controller
      */
     public function dispatch()
     {
@@ -94,6 +95,7 @@ class Dispatcher
         } else
         {
             require('404.html');
+            exit();
         }
     }
 

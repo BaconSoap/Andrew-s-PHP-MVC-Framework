@@ -8,7 +8,6 @@ class Welcome_Controller extends Controller
     {
         $this->h = $this->load->helper('uri');
         $this->data = "Hello!";
-        echo $this->h->link_to('a', 'welcome_index_path');
     }
     
     function view($id)
@@ -19,7 +18,14 @@ class Welcome_Controller extends Controller
     function model_test()
     {
         $this->posts = $this->load->model('posts');
+        $this->posts->insert(array('title'=>'test'));
         $this->posts->hello();
         echo $this->posts->select('count(*)')->now();
+    }
+    
+    function recent()
+    {
+        $this->posts = $this->load->model('posts');
+        $this->all_posts = $this->posts->recent()->select('*')->now(true);
     }
 }

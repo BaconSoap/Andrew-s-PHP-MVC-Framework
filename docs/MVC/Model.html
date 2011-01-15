@@ -31,11 +31,17 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../MVC/_autoloader.php.html">		autoloader.php
+		</a><br>
+			<a href="../MVC/_base.php.html">		base.php
+		</a><br>
 			<a href="../MVC/_base_controller.php.html">		base_controller.php
 		</a><br>
 			<a href="../MVC/_helpers---base_helper.php.html">		base_helper.php
 		</a><br>
 			<a href="../MVC/_base_model.php.html">		base_model.php
+		</a><br>
+			<a href="../MVC/_configuration.php.html">		configuration.php
 		</a><br>
 			<a href="../MVC/_database.php.html">		database.php
 		</a><br>
@@ -103,6 +109,7 @@ Source Location: /base_model.php<br /><br />
 <ul>
     <li><a href="../MVC/Model.html#var$link">$link</a></li>
     <li><a href="../MVC/Model.html#var$load">$load</a></li>
+    <li><a href="../MVC/Model.html#var$options">$options</a></li>
     <li><a href="../MVC/Model.html#var$query">$query</a></li>
     <li><a href="../MVC/Model.html#var$stat_load">$stat_load</a></li>
   </ul>
@@ -113,6 +120,8 @@ Source Location: /base_model.php<br /><br />
 <h3><a href="#class_methods">Methods</a></h3>
 <ul>
     <li><a href="../MVC/Model.html#method__construct">__construct</a></li>
+    <li><a href="../MVC/Model.html#methodinsert">insert</a></li>
+    <li><a href="../MVC/Model.html#methodrun_query">run_query</a></li>
     <li><a href="../MVC/Model.html#methodselect">select</a></li>
   </ul>
 </td>
@@ -231,6 +240,30 @@ Model  This is the base model that every model MUST extend, in order to gain    
       </table>
 	</div><br /><br />
 	<div class="top">[ <a href="#top">Top</a> ]</div><br />
+	<a name="var$options"></a>
+	<p></p>
+	<h4>$options = <span class="value"></span></h4>
+	<p>[line 27]</p>
+  The array of options to pass into the query. Allows for named scopes.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+
+  <br />
+	<div class="tags">
+  <table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td><b>Type:</b>&nbsp;&nbsp;</td>
+      <td>array</td>
+    </tr>
+      </table>
+	</div><br /><br />
+	<div class="top">[ <a href="#top">Top</a> ]</div><br />
 	<a name="var$query"></a>
 	<p></p>
 	<h4>$query = <span class="value"></span></h4>
@@ -264,7 +297,7 @@ Model  This is the base model that every model MUST extend, in order to gain    
 
   <hr />
 	<a name="method__construct"></a>
-	<h3>constructor __construct <span class="smalllinenumber">[line 28]</span></h3>
+	<h3>constructor __construct <span class="smalllinenumber">[line 34]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -288,8 +321,86 @@ Model  This is the base model that every model MUST extend, in order to gain    
         <div class="top">[ <a href="#top">Top</a> ]</div>
   </div>
   <hr />
+	<a name="methodinsert"></a>
+	<h3>method insert <span class="smalllinenumber">[line 73]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>True insert(
+mixed
+$values)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Model::insert()  Inserts a record into the database, with an associative array as the data.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>or false, depending on the outcome.</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$values</b>&nbsp;&nbsp;</td>
+        <td></td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
+	<a name="methodrun_query"></a>
+	<h3>method run_query <span class="smalllinenumber">[line 86]</span></h3>
+	<div class="function">
+    <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
+    <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
+		<code>An run_query(
+mixed
+$query)</code>
+    </td></tr></table>
+    </td></tr></table><br />
+	
+		Model::run_query()  Directly runs a query against the database.<br /><br /><br /><br />
+<h4>Tags:</h4>
+<div class="tags">
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><b>return:</b>&nbsp;&nbsp;</td><td>associative array of the results of the query.</td>
+  </tr>
+  <tr>
+    <td><b>access:</b>&nbsp;&nbsp;</td><td>public</td>
+  </tr>
+</table>
+</div>
+<br /><br />
+
+	
+        <h4>Parameters:</h4>
+    <div class="tags">
+    <table border="0" cellspacing="0" cellpadding="0">
+          <tr>
+        <td class="type">mixed&nbsp;&nbsp;</td>
+        <td><b>$query</b>&nbsp;&nbsp;</td>
+        <td>The query to run.</td>
+      </tr>
+        </table>
+    </div><br />
+        <div class="top">[ <a href="#top">Top</a> ]</div>
+  </div>
+  <hr />
 	<a name="methodselect"></a>
-	<h3>method select <span class="smalllinenumber">[line 55]</span></h3>
+	<h3>method select <span class="smalllinenumber">[line 60]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -331,7 +442,7 @@ $what)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 12 Jan 2011 14:17:54 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sat, 15 Jan 2011 12:10:37 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

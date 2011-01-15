@@ -31,11 +31,17 @@
             <br /><br />
                         <b>Files:</b><br />
       	  <div class="package">
+			<a href="../MVC/_autoloader.php.html">		autoloader.php
+		</a><br>
+			<a href="../MVC/_base.php.html">		base.php
+		</a><br>
 			<a href="../MVC/_base_controller.php.html">		base_controller.php
 		</a><br>
 			<a href="../MVC/_helpers---base_helper.php.html">		base_helper.php
 		</a><br>
 			<a href="../MVC/_base_model.php.html">		base_model.php
+		</a><br>
+			<a href="../MVC/_configuration.php.html">		configuration.php
 		</a><br>
 			<a href="../MVC/_database.php.html">		database.php
 		</a><br>
@@ -270,7 +276,7 @@ Controller  This is the class that every controller MUST extend to work.<br /><b
   </div>
   <hr />
 	<a name="methodlink_to"></a>
-	<h3>method link_to <span class="smalllinenumber">[line 83]</span></h3>
+	<h3>method link_to <span class="smalllinenumber">[line 92]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -345,7 +351,7 @@ $view_name)</code>
   </div>
   <hr />
 	<a name="methodrender_partial"></a>
-	<h3>method render_partial <span class="smalllinenumber">[line 58]</span></h3>
+	<h3>method render_partial <span class="smalllinenumber">[line 64]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -381,24 +387,24 @@ $partial_name)</code>
   </div>
   <hr />
 	<a name="methodstyle_link"></a>
-	<h3>method style_link <span class="smalllinenumber">[line 92]</span></h3>
+	<h3>method style_link <span class="smalllinenumber">[line 104]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>void style_link(
-
+string
 $sheet)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		Adds a stylesheet link.<br /><br /><br /><br />
+		Controller::style_link()  Redners a stylesheet link.<br /><br /><br /><br />
 
 	
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">string&nbsp;&nbsp;</td>
         <td><b>$sheet</b>&nbsp;&nbsp;</td>
         <td></td>
       </tr>
@@ -408,7 +414,7 @@ $sheet)</code>
   </div>
   <hr />
 	<a name="methodyield"></a>
-	<h3>method yield <span class="smalllinenumber">[line 47]</span></h3>
+	<h3>method yield <span class="smalllinenumber">[line 53]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
@@ -417,7 +423,7 @@ $sheet)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Controller::yield()  Yields a layout to the controller, inserting the controller's contents    into the layout.<br /><br /><br /><br />
 <h4>Tags:</h4>
 <div class="tags">
 <table border="0" cellspacing="0" cellpadding="0">
@@ -433,24 +439,24 @@ $sheet)</code>
   </div>
   <hr />
 	<a name="method__get"></a>
-	<h3>method __get <span class="smalllinenumber">[line 103]</span></h3>
+	<h3>method __get <span class="smalllinenumber">[line 129]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>void __get(
-
+mixed
 $name)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Controller::__get()  Gets an 'undefined' variable.<br /><br /><br /><br />
 
 	
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">mixed&nbsp;&nbsp;</td>
         <td><b>$name</b>&nbsp;&nbsp;</td>
         <td></td>
       </tr>
@@ -460,30 +466,30 @@ $name)</code>
   </div>
   <hr />
 	<a name="method__set"></a>
-	<h3>method __set <span class="smalllinenumber">[line 98]</span></h3>
+	<h3>method __set <span class="smalllinenumber">[line 118]</span></h3>
 	<div class="function">
     <table width="90%" border="0" cellspacing="0" cellpadding="1"><tr><td class="code_border">
     <table width="100%" border="0" cellspacing="0" cellpadding="2"><tr><td class="code">
 		<code>void __set(
-
-$name, 
+mixed
+$name, mixed
 $value)</code>
     </td></tr></table>
     </td></tr></table><br />
 	
-		<br /><br />
+		Controller::__set()  Sets an undefined variable.<br /><br /><br /><br />
 
 	
         <h4>Parameters:</h4>
     <div class="tags">
     <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">mixed&nbsp;&nbsp;</td>
         <td><b>$name</b>&nbsp;&nbsp;</td>
         <td></td>
       </tr>
           <tr>
-        <td class="type">&nbsp;&nbsp;</td>
+        <td class="type">mixed&nbsp;&nbsp;</td>
         <td><b>$value</b>&nbsp;&nbsp;</td>
         <td></td>
       </tr>
@@ -496,7 +502,7 @@ $value)</code>
 
         <div class="credit">
 		    <hr />
-		    Documentation generated on Wed, 12 Jan 2011 14:17:52 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
+		    Documentation generated on Sat, 15 Jan 2011 12:10:35 -0500 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.1</a>
 	      </div>
       </td></tr></table>
     </td>

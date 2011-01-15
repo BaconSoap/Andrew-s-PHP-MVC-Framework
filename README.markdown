@@ -16,3 +16,9 @@ Installation
 5. Look through the documentation, the comments, and the code for usage.
 
 Don't forget to add to the routes.php file if you want more actions.
+
+Named Scopes
+------------
+
+There are now basic named scopes, supporting WHERE and ORDER BY. A named scope is defined in an individual model, and when calling them, you must use the format $this->model_instance->scope()->...->scope()->select()->...->now(). Example:
+$this->posts->recent->select(*)->now();

@@ -1,4 +1,13 @@
 <?php
+/**
+ * base.php
+ * The first step of PHP MVC goodness.
+ * @package MVC
+ * @author Andrew Varnerin
+ * @copyright 2011
+ * @version $Id$
+ */
+ 
 require_once 'autoloader.php';
 require_once 'dispatcher.php';
 require_once 'loader.php';

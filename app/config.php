@@ -19,3 +19,7 @@ $config['db']['server'] = 'localhost';
 $config['db']['database'] = 'test';
 $config['db']['username'] = 'test';
 $config['db']['password'] = 'test';
+
+//Populate created_at and updated_at. NOTE: If this is true, then your table
+//  must have a created_at and updated_at column. These should be timestamps.
+$config['timestamp_records'] = true;

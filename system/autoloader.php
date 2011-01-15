@@ -1,4 +1,13 @@
 <?php
+/**
+ * autoloader.php
+ * This file contains the magical autoloader.
+ * @package MVC
+ * @author Andrew Varnerin
+ * @copyright 2011
+ * @version $Id$
+ */
+ 
 if (!isset($_BASEPATH))
 { echo "No direct access"; exit; }
 

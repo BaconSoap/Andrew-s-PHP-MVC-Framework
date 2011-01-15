@@ -44,6 +44,12 @@ class Controller
         }
     }
     
+    /**
+     * Controller::yield()
+     * Yields a layout to the controller, inserting the controller's contents
+     *   into the layout.
+     * @return void
+     */
     protected function yield()
     {
         require_once 'app/views/'.strtolower(substr($this->temp_controller_name, 0, -11)).'/'.strtolower($this->temp_view_name).'_view.php';
@@ -61,8 +67,11 @@ class Controller
         require 'app/views/'.$class_name.'/_'.$partial_name.'.php';
     }
     
+
     /**
-     * Loads the URI helper.
+     * Controller::_load_uri_helper()
+     * Loads the uri helper.
+     * @return void
      */
     private function _load_uri_helper()
     {
@@ -87,7 +96,10 @@ class Controller
     }
     
     /**
-     * Adds a stylesheet link.
+     * Controller::style_link()
+     * Redners a stylesheet link.
+     * @param string $sheet
+     * @return void
      */
     function style_link($sheet)
     {
@@ -95,11 +107,25 @@ class Controller
         $this->h->style_link($sheet);
     }
     
+    
+    /**
+     * Controller::__set()
+     * Sets an undefined variable.
+     * @param mixed $name
+     * @param mixed $value
+     * @return void
+     */
     function __set($name, $value)
     {
         $this->loaded_components[$name] =& $value;
     }
     
+    /**
+     * Controller::__get()
+     * Gets an 'undefined' variable.
+     * @param mixed $name
+     * @return
+     */
     function __get($name)
     {
         if (isset($this->loaded_components[$name]))
