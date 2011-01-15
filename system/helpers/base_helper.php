@@ -1,10 +1,8 @@
 <?php
-//if (!isset($_BASEPATH))
-//{ echo "No direct access"; exit; }
 
 /**
  * Helper
- * This is the base helper that all helpers (should) extend.
+ * This is the base helper that all helpers must extend.
  * @package MVC
  * @author Andrew Varnerin
  * @copyright 2011

@@ -3,10 +3,10 @@ class Welcome_Controller extends Controller
 {
     public $data;
     public $id;
-    public $uri_helper;
+    
     function index()
     {
-        $this->h = $this->load->helper('uri');
+        $this->uri = $this->load->helper('uri');
         $this->data = "Hello!";
     }
     
@@ -26,6 +26,6 @@ class Welcome_Controller extends Controller
     function recent()
     {
         $this->posts = $this->load->model('posts');
-        $this->all_posts = $this->posts->recent()->select('*')->now(true);
+        $this->all_posts = $this->posts->recent()->tested()->select('*')->now(true);
     }
 }

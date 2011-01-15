@@ -43,7 +43,13 @@ class Dispatcher
         for ($i = $pos + 1; $i < count($this->uri); $i++) {
             $new_uri[$i - $pos - 1] = $this->uri[$i];
         }
+        
         $this->uri = $new_uri;
+        if($this->_get_controller().'/'.$this->_get_function().'/' != $this->uri)
+        {
+            $this->params = $this->_get_params();
+            $this->uri = array($this->_get_controller(), $this->_get_function());
+        }
         //Grabs the controller, function, and any paramaters.
         if ($this->config['automagic_routes'])
         {
@@ -90,7 +96,7 @@ class Dispatcher
         //Safe routing, using only defined routes.
         } else if (isset($this->routes[$joined_uri]))
         {
-            $this->load->controller($this->routes[$joined_uri]['controller'],$this->routes[$joined_uri]['function']);
+            $this->load->controller($this->routes[$joined_uri]['controller'],$this->routes[$joined_uri]['function'], $this->params);
         //At this point, we have nothing. 404 page to the rescue!.
         } else
         {

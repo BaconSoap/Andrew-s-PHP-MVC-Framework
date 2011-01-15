@@ -19,4 +19,10 @@ class Posts_Model extends Model
         $this->options['ORDER BY'] = 'created_at DESC';
         return $this;
     }
+    
+    public function tested()
+    {
+        $this->options['WHERE'] .= ' AND `title` = "test"';
+        return $this;
+    }
 }

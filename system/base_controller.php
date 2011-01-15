@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Controller
  * This is the class that every controller MUST extend to work.
@@ -15,7 +14,7 @@ class Controller
 
     public $loaded_components;
     public $load;
-    public $uri_helper;
+    //public $uri;
     private $temp_controller_name;
     private $temp_view_name;
     
@@ -67,47 +66,6 @@ class Controller
         require 'app/views/'.$class_name.'/_'.$partial_name.'.php';
     }
     
-
-    /**
-     * Controller::_load_uri_helper()
-     * Loads the uri helper.
-     * @return void
-     */
-    private function _load_uri_helper()
-    {
-        if (!isset($this->h))
-        {
-            $this->h = $this->load->helper('uri');
-        }
-    }
-    
-    
-    /**
-     * Controller::link_to()
-     * Creates a link to another controller & action.
-     * @param mixed $text The anchor text
-     * @param mixed $place The place to link to. Ex: "posts_all_path"
-     * @return void
-     */
-    function link_to($text, $place)
-    {
-        $this->_load_uri_helper();
-        $this->h->link_to($text, $place);
-    }
-    
-    /**
-     * Controller::style_link()
-     * Redners a stylesheet link.
-     * @param string $sheet
-     * @return void
-     */
-    function style_link($sheet)
-    {
-        $this->_load_uri_helper();
-        $this->h->style_link($sheet);
-    }
-    
-    
     /**
      * Controller::__set()
      * Sets an undefined variable.
@@ -128,11 +86,15 @@ class Controller
      */
     function __get($name)
     {
+        
         if (isset($this->loaded_components[$name]))
         {
             return $this->loaded_components[$name];
-        } else
+        } else if ($name == 'uri')
         {
+            $this->__set('uri', $this->load->helper('uri'));
+            return $this->loaded_components['uri'];
+        } else {
             print_r($this->loaded_components);
             echo $name;
             throw new EXCEPTION('No such component');
