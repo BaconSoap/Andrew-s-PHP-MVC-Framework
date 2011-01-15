@@ -13,7 +13,12 @@
 class Uri_helper extends Helper
 {
     public $uri_helpers;
-    public $config;
+    
+    public function __construct($config, &$load)
+    {
+        parent::__construct($config, $load);
+        $this->uri_helpers = $this->load->uri_helpers;
+    }
     
     function link_to($text, $place)
     {

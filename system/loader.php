@@ -60,7 +60,10 @@ class Loader
     
     
     /**
-     * Loads a helper.
+     * Loader::helper()
+     * Loads a helper into a controller
+     * @param string $helper
+     * @return 
      */
     function helper($helper)
     {
@@ -70,16 +73,10 @@ class Loader
         {
             
             $helper = ucfirst($helper."_helper");
-            $helped = new $helper();
-            $helped->load =& $this;
+            $loaded_helper = new $helper($this->config, $this);
             
-            if($helper == 'Uri_helper')
-            {
-                $helped->uri_helpers = $this->uri_helpers;
-            }
-            $helped->config = $this->config;
             
-            return $helped;
+            return $loaded_helper;
         }
     }
 }

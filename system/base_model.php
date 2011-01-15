@@ -68,7 +68,7 @@ class Model
      * Model::insert()
      * Inserts a record into the database, with an associative array as the data.
      * @param mixed $values
-     * @return True or false, depending on the outcome.
+     * @return boolean True or false, depending on the outcome.
      */
     public function insert($values)
     {

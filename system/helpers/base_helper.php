@@ -13,5 +13,12 @@
  */
 class Helper
 {
+    public $load;
+    public $config;
     
+    public function __construct($config, &$load)
+    {
+        $this->config = $config;
+        $this->load =& $load;
+    }
 }
