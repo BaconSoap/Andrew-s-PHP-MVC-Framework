@@ -37,4 +37,33 @@ class Uri_helper extends Helper
     {
         echo '<link rel="stylesheet" rev="stylesheet" href="'.$this->config['style_path'].$sheet.'" media="screen">';
     }
+    
+    /**
+     * Uri_helper::jquery()
+     * Adds the jQuery script tag, using either Google's CDN or a local copy,
+     *   depending on the developer's config options.
+     * @return void
+     */
+    function jquery()
+    {
+        if($this->config['jquery_local'])
+        {
+            echo '<script type="text/javascript" src="'.$this->config['javascript_path'].'jquery-'.$this->config['jquery_version'].'.min.js"></script>';
+        } else
+        {
+            echo '<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/'.$this->config['jquery_version'].'/jquery.min.js"></script>';
+        }
+        
+    }
+    
+    /**
+     * Uri_helper::javascript()
+     * Adds a link to a javascript file to the document.
+     * @param string $file
+     * @return void
+     */
+    function javascript($file)
+    {
+        echo '<script type="text/javascript" src="'.$this->config['javascript_path'].$file.'.js"></script>';
+    }
 }

@@ -43,13 +43,20 @@ class Dispatcher
         for ($i = $pos + 1; $i < count($this->uri); $i++) {
             $new_uri[$i - $pos - 1] = $this->uri[$i];
         }
-        
         $this->uri = $new_uri;
+        
+        if ($this->uri[0] == '')
+        {
+            $this->uri = array($this->config['default_controller'], $this->config['default_function'], $this->config['default_params']);
+        }
+        
+        //This is a quick fix to check for parameters and handle them correctly.
         if($this->_get_controller().'/'.$this->_get_function().'/' != $this->uri)
         {
             $this->params = $this->_get_params();
             $this->uri = array($this->_get_controller(), $this->_get_function());
         }
+        
         //Grabs the controller, function, and any paramaters.
         if ($this->config['automagic_routes'])
         {
@@ -57,6 +64,7 @@ class Dispatcher
             $this->function = $this->_get_function();
             $this->params = $this->_get_params();
         }
+        
         //Load the routes and routes helpers.
         $this->_load_routes();
         $this->load->uri_helpers = $this->routes_helpers;
@@ -100,9 +108,11 @@ class Dispatcher
         //At this point, we have nothing. 404 page to the rescue!.
         } else
         {
+            print_r($this->uri);
             require('404.html');
             exit();
         }
+        
     }
 
     /**

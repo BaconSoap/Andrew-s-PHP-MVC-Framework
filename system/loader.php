@@ -75,7 +75,6 @@ class Loader
             $helper = ucfirst($helper."_helper");
             $loaded_helper = new $helper($this->config, $this);
             
-            
             return $loaded_helper;
         }
     }
