@@ -6,7 +6,6 @@ class Welcome_Controller extends Controller
     
     function index()
     {
-        $this->uri = $this->load->helper('uri');
         $this->data = "Hello!";
     }
     

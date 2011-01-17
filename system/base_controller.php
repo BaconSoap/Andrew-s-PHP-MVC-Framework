@@ -14,7 +14,6 @@ class Controller
 
     public $loaded_components;
     public $load;
-    //public $uri;
     private $temp_controller_name;
     private $temp_view_name;
     
@@ -86,17 +85,11 @@ class Controller
      */
     function __get($name)
     {
-        
         if (isset($this->loaded_components[$name]))
         {
             return $this->loaded_components[$name];
-        } else if ($name == 'uri')
+        } else
         {
-            $this->__set('uri', $this->load->helper('uri'));
-            return $this->loaded_components['uri'];
-        } else {
-            print_r($this->loaded_components);
-            echo $name;
             throw new EXCEPTION('No such component');
         }
     }

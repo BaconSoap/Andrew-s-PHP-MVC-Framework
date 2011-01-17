@@ -34,13 +34,33 @@ class Loader
         $controller = ucfirst($controller);
         $controller .= '_controller';
 
-        $loaded = new $controller();
-        $loaded->load =& $this;
-        $loaded->$function($params[0],$params[1],$params[2],$params[3],$params[4],$params[5],$params[6],$params[7]);
+        $loaded_controller = new $controller();
+        $this->_preload($loaded_controller);
+        $loaded_controller->load =& $this;
+        $loaded_controller->$function($params[0],$params[1],$params[2],$params[3],$params[4],$params[5],$params[6],$params[7]);
         
-        $loaded->render($controller, $function);
+        $loaded_controller->render($controller, $function);
     }
     
+    /**
+     * Loader::_preload()
+     * Loads user-defined components into the controller.
+     * @param Controller $loaded_controller The controller to load the components into.
+     * @return void
+     */
+    private function _preload(&$loaded_controller)
+    {
+        if(isset($this->config['load']))
+        {
+            if(isset($this->config['load']['helper']))
+            {
+                foreach($this->config['load']['helper'] as $helper)
+                {
+                    $loaded_controller->$helper = $this->helper($helper);
+                }
+            }
+        }
+    }
     
     /**
      * Loader::model()
