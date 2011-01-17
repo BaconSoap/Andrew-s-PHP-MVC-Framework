@@ -21,7 +21,7 @@ $config['javascript_path'] = 'http://localhost/MVC/app/javascript/';
 
 //Autoload helpers at the beginning of every dispatch. Comment out if you don't
 //  want to autoload these.
-//$config['load']['helper'] = array('uri');
+$config['load']['helper'] = array('uri');
 
 //jQuery version
 $config['jquery_version'] = '1.4.4';
