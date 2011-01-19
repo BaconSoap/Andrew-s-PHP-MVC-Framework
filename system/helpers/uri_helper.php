@@ -20,12 +20,17 @@ class Uri_helper extends Helper
         $this->uri_helpers = $this->load->uri_helpers;
     }
     
-    function link_to($text, $place)
+    function link_to($text, $place, $params = null)
     {
         
         if(isset($this->uri_helpers[$place]))
         {
-            echo "<a href='".$this->uri_helpers[$place]."'>$text</a>";
+            $uri = $this->uri_helpers[$place];
+            if($params != null)
+            {
+                $uri .= '/'.$params;
+            }
+            echo "<a href='".$uri."'>$text</a>";
         } else
         {
             echo "<br/>ERROR: Route not found: <b>$place</b>";
